@@ -132,9 +132,10 @@ Momentum stores everything in your browser's / app's local storage on your devic
 
 ## Roadmap
 
-- [ ] Export / import your data (JSON backup)
+- [x] Export / import your data (JSON backup)
+- [x] Automated Windows installer builds via GitHub Actions
 - [ ] Optional IndexedDB storage for larger histories
-- [ ] Custom app icon polish + auto-update
+- [ ] Auto-update for the desktop app
 - [ ] macOS & Linux desktop builds
 - [ ] Optional end-to-end-encrypted sync (opt-in, still private)
 

@@ -266,6 +266,32 @@ button {
   background: var(--accent);
   color: #fff;
 }
+.side-data {
+  display: flex;
+  gap: 8px;
+  padding: 12px 14px;
+  border-top: 1px solid var(--brd);
+}
+.db-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background: var(--card);
+  border: 1px solid var(--brd);
+  color: var(--dim);
+  border-radius: 9px;
+  padding: 8px 6px;
+  font-size: 11.5px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.15s;
+}
+.db-btn:hover {
+  border-color: var(--accent);
+  color: var(--text);
+}
 .side-foot {
   padding: 16px;
   border-top: 1px solid var(--brd);

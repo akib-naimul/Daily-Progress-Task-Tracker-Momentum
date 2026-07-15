@@ -1,6 +1,7 @@
 "use client";
 
 import type { ViewKey } from "./AppShell";
+import DataBackup from "./DataBackup";
 
 const NAV: { key: ViewKey; ico: string; label: string; badge?: boolean }[] = [
   { key: "today", ico: "◈", label: "Today" },
@@ -38,6 +39,7 @@ export default function Sidebar({
           <NavButton key={n.key} n={n} view={view} setView={setView} openCount={openCount} />
         ))}
       </nav>
+      <DataBackup />
       <div className="side-foot">
         <div className="avatar">N</div>
         <div style={{ flex: 1 }}>
