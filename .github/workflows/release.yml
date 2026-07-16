@@ -10,7 +10,6 @@ on:
 
 permissions:
   contents: write
-  issues: write
 
 jobs:
   build-windows:
@@ -22,38 +21,16 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          # Match the npm (v11) that generated package-lock.json; npm 10 (Node 20)
-          # mishandles platform-specific optional deps and fails `npm ci`.
           node-version: 24
           cache: npm
 
       - name: Install dependencies
-        shell: bash
-        run: |
-          set +e
-          npm ci 2>&1 | tee /tmp/install.log
-          code=${PIPESTATUS[0]}
-          if [ $code -ne 0 ]; then
-            echo "" >> /tmp/install.log
-            echo "----- npm debug log -----" >> /tmp/install.log
-            cat "$(npm config get cache)/_logs/"*.log >> /tmp/install.log 2>/dev/null || true
-          fi
-          exit $code
+        run: npm ci
         env:
           # electron-builder downloads its own Electron for packaging, so we skip
           # the electron npm package's binary download here — it isn't needed to
           # build the installer and can be flaky/rate-limited on CI.
           ELECTRON_SKIP_BINARY_DOWNLOAD: "1"
-
-      - name: Report install failure (diagnostic)
-        if: failure()
-        shell: bash
-        run: |
-          gh issue create \
-            --title "CI install diagnostic $(date -u +%Y%m%dT%H%M%SZ)" \
-            --body-file /tmp/install.log || true
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build desktop installer
         run: npm run desktop:build
