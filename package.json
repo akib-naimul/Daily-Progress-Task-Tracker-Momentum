@@ -36,6 +36,11 @@
   "build": {
     "appId": "com.naimul.momentum",
     "productName": "Momentum",
+    "publish": [
+      {
+        "provider": "github"
+      }
+    ],
     "directories": {
       "output": "dist"
     },
